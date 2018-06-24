@@ -3,7 +3,7 @@ module.exports = {
 
   siteTitle: 'Galin Yanev', // Navigation and Site Title
   siteTitleAlt: 'Galin Yanev Art', // Alternative Site title for SEO
-  siteUrl: 'https://galinyanev.com', // Domain of your site. No trailing slash!
+  siteUrl: 'https://galinyanev.netlify.com', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
   siteLogo: '/logos/logo-1024.png', // Used for SEO and manifest
   siteDescription: 'Galin Yanev Abstract Art',
@@ -12,7 +12,7 @@ module.exports = {
   // userTwitter: '@emilia', // Twitter Username
   ogSiteName: 'Galin Yanev Art', // Facebook Site Name
   ogLanguage: 'en', // og:language
-  // googleAnalyticsID: 'UA-12345689-1', // TODO: add a GA ID
+  googleAnalyticsID: 'UA-43588334-7',
 
   // Manifest and Progress color
   themeColor: '#3498DB',
@@ -37,4 +37,4 @@ module.exports = {
       name: 'GitHub',
     },
   ],
-};
+}

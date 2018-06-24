@@ -34,6 +34,7 @@ const Back = styled(Link)`
 `
 
 const Avatar = styled.div`
+  background-color: bisque;
   height: 40px;
   width: 40px;
   image-rendering: -moz-crisp-edges;

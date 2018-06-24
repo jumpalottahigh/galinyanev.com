@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-sitemap: https://galinyanev.com/sitemap.xml
+sitemap: https://galinyanev.netlify.com/sitemap.xml

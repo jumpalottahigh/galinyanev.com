@@ -5,7 +5,7 @@ import { injectGlobal, ThemeProvider } from 'styled-components'
 import SEO from '../components/SEO'
 import Footer from '../components/Footer'
 import favicon from './favicon.ico'
-import config from '../../config/site'
+// import config from '../../config/site'
 import theme from '../../config/theme'
 
 /* eslint no-unused-expressions: off */

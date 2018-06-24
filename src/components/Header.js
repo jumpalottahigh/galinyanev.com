@@ -60,7 +60,7 @@ const Header = ({ avatar, name, location, socialMedia }) => (
           <img src={avatar} alt={name} />
         </Avatar>
       </Overdrive>
-      <Overdrive id="name-to-back">
+      {/* <Overdrive id="name-to-back">
         <Name>{name}</Name>
       </Overdrive>
       <Location>{location}</Location>
@@ -70,7 +70,7 @@ const Header = ({ avatar, name, location, socialMedia }) => (
             {social.name}
           </a>
         ))}
-      </SocialMedia>
+      </SocialMedia> */}
     </Content>
   </Wrapper>
 )
