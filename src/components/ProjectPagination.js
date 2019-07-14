@@ -1,19 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 
-import arrowLeft from './left-chevron.svg'
-import arrowRight from './right-chevron.svg'
+import arrowLeft from '../images/left-chevron.svg'
+import arrowRight from '../images/right-chevron.svg'
 
 const Wrapper = styled.div`
   display: flex;
   max-width: ${props => props.theme.maxWidths.general};
-  margin: 6rem auto;
+  margin: 0 auto;
+  padding: 3rem 0;
   a {
     color: ${props => props.theme.colors.color};
     display: flex;
     align-items: center;
     font-size: 1.25rem;
+    &:hover {
+      color: ${props => props.theme.colors.linkHover};
+    }
   }
   justify-items: center;
 `
@@ -58,3 +63,13 @@ const ProjectPagination = ({ next, prev }) => (
 )
 
 export default ProjectPagination
+
+ProjectPagination.propTypes = {
+  next: PropTypes.object,
+  prev: PropTypes.object,
+}
+
+ProjectPagination.defaultProps = {
+  next: null,
+  prev: null,
+}

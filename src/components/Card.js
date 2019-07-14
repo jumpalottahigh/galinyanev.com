@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { useSpring, animated, config } from 'react-spring'
+import { rgba } from 'polished'
 import Img from 'gatsby-image'
-import Link from 'gatsby-link'
-import Overdrive from 'react-overdrive'
+import { Link } from 'gatsby'
 
 const CardItem = styled(Link)`
   min-height: 500px;
@@ -11,37 +13,17 @@ const CardItem = styled(Link)`
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   color: ${props => props.theme.colors.color};
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-  &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.75) 0%,
-      rgba(0, 0, 0, 0) 20%,
-      rgba(0, 0, 0, 0) 80%,
-      rgba(0, 0, 0, 0.75) 100%
-    );
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    opacity: 0;
-  }
+  transition: all 0.3s ease-in-out;
 
   &:hover {
-    transform: translateY(-15px);
     color: white;
-    &:after {
-      opacity: 1;
-    }
-    box-shadow: 0 35px 48px rgba(0, 0, 0, 0.3), 0 30px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-6px);
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.s}) {
+    min-height: 300px;
   }
 `
 
@@ -54,77 +36,75 @@ const Cover = styled.div`
   }
 `
 
-const Header = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  padding: 1rem;
-  z-index: 10;
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  opacity: 0;
-
-  ${CardItem}:hover & {
-    opacity: 1;
-  }
-`
-
-const DateWrapper = styled.div`
-  font-size: 0.9rem;
-`
-
-const Data = styled.div`
-  z-index: 10;
-  position: relative;
-  width: 100%;
-`
-
 const Content = styled.div`
   padding: 1rem;
   position: relative;
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   opacity: 0;
+  background: ${props => rgba(props.theme.colors.link, 0.65)};
+  height: 0;
 
   ${CardItem}:hover & {
     opacity: 1;
+    height: 120px;
   }
 `
 
-const Areas = styled.span`
-  font-size: 0.75rem;
-`
-
-const AreaItem = styled.span`
-  &:not(:last-child) {
-    margin-right: 0.25rem;
-    &:after {
-      content: ',';
-    }
+const Bottom = styled.div`
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  div:first-child {
+    margin-right: 1rem;
   }
 `
 
 const Name = styled.h2`
-  margin-top: 1.25rem;
   margin-bottom: 0;
+  margin-top: 0;
 `
 
-const Card = ({ path, cover, date, areas, title, slug }) => (
-  <Overdrive id={`${slug}-cover`}>
-    <CardItem to={path}>
-      <Cover>
-        <Img sizes={cover} />
-      </Cover>
-      <Header>
-        <DateWrapper>{date}</DateWrapper>
-        <Areas>{areas.map(area => <AreaItem key={area}>{area}</AreaItem>)}</Areas>
-      </Header>
-      <Data>
+const Card = ({ path, cover, date, areas, title, delay }) => {
+  const springProps = useSpring({
+    config: config.slow,
+    delay: 200 * delay,
+    from: { opacity: 0, transform: 'translate3d(0, 30px, 0)' },
+    to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+  })
+
+  return (
+    <animated.div style={springProps}>
+      <CardItem to={path}>
+        <Cover>
+          <Img fluid={cover} />
+        </Cover>
         <Content>
           <Name>{title}</Name>
+          <Bottom>
+            <div>{date}</div>
+            <div>
+              {areas.map((area, index) => (
+                <React.Fragment key={area}>
+                  {index > 0 && ', '}
+                  {area}
+                </React.Fragment>
+              ))}
+            </div>
+          </Bottom>
         </Content>
-      </Data>
-    </CardItem>
-  </Overdrive>
-)
+      </CardItem>
+    </animated.div>
+  )
+}
 
 export default Card
+
+Card.propTypes = {
+  path: PropTypes.string.isRequired,
+  cover: PropTypes.object.isRequired,
+  date: PropTypes.string.isRequired,
+  areas: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  delay: PropTypes.number.isRequired,
+}

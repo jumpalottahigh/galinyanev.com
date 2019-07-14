@@ -1,33 +1,34 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
-import Overdrive from 'react-overdrive'
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
-import SEO from '../components/SEO'
-import ProjectHeader from '../components/ProjectHeader'
-import ProjectPagination from '../components/ProjectPagination'
+import { Layout, ProjectHeader, ProjectPagination, SEO } from '../components'
 import config from '../../config/site'
+
+const BG = styled.div`
+  background-color: ${props => props.theme.colors.bg};
+  position: relative;
+  padding: 2rem 0 0 0;
+`
 
 const OuterWrapper = styled.div`
   padding: 0 ${props => props.theme.contentPadding};
-  margin: -6rem auto 6rem auto;
+  margin: -10rem auto 0 auto;
 `
 
 const InnerWrapper = styled.div`
   position: relative;
-  max-width: ${props => props.theme.maxWidths.project}px;
+  max-width: ${props => `${props.theme.maxWidths.project}px`};
   margin: 0 auto;
 `
 
-const Project = props => {
-  const { slug, next, prev } = props.pathContext
-  const postNode = props.data.markdownRemark
+const Project = ({ pageContext: { slug, prev, next }, data: { project: postNode, images } }) => {
   const project = postNode.frontmatter
 
   return (
-    <React.Fragment>
-      <Helmet title={`${project.title} | ${config.siteTitle}`} />
+    <Layout customSEO>
       <SEO postPath={slug} postNode={postNode} postSEO />
       <ProjectHeader
         avatar={config.avatar}
@@ -35,33 +36,78 @@ const Project = props => {
         date={project.date}
         title={project.title}
         areas={project.areas}
+        text={postNode.body}
       />
-      <OuterWrapper>
-        <InnerWrapper>
-          <Overdrive id={`${slug}-cover`}>
-            <Img sizes={project.cover.childImageSharp.sizes} />
-          </Overdrive>
-        </InnerWrapper>
-        <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-        <ProjectPagination next={next} prev={prev} />
-      </OuterWrapper>
-    </React.Fragment>
+      <BG>
+        <OuterWrapper>
+          <InnerWrapper>
+            {images.nodes.map(image => (
+              <Img
+                alt={image.name}
+                key={image.childImageSharp.fluid.src}
+                fluid={image.childImageSharp.fluid}
+                style={{ margin: '3rem 0' }}
+              />
+            ))}
+          </InnerWrapper>
+          <ProjectPagination next={next} prev={prev} />
+        </OuterWrapper>
+      </BG>
+    </Layout>
   )
 }
 
 export default Project
 
-/* eslint no-undef: off */
+Project.propTypes = {
+  pageContext: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    next: PropTypes.object,
+    prev: PropTypes.object,
+  }),
+  data: PropTypes.shape({
+    project: PropTypes.object.isRequired,
+    images: PropTypes.object.isRequired,
+  }).isRequired,
+}
+
+Project.defaultProps = {
+  pageContext: PropTypes.shape({
+    next: null,
+    prev: null,
+  }),
+}
+
 export const pageQuery = graphql`
-  query ProjectPostBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+  query($slug: String!, $absolutePathRegex: String!) {
+    images: allFile(
+      filter: {
+        absolutePath: { regex: $absolutePathRegex }
+        extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
+      }
+      sort: { fields: name, order: ASC }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          fluid(maxWidth: 1600, quality: 90) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+    project: mdx(fields: { slug: { eq: $slug } }) {
+      body
+      excerpt
+      parent {
+        ... on File {
+          mtime
+          birthtime
+        }
+      }
       frontmatter {
         cover {
           childImageSharp {
-            sizes(maxWidth: 1600, quality: 90, traceSVG: { color: "#328bff" }) {
-              ...GatsbyImageSharpSizes_withWebp_tracedSVG
-            }
             resize(width: 800) {
               src
             }

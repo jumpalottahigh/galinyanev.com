@@ -1,24 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
-import Overdrive from 'react-overdrive'
+import PropTypes from 'prop-types'
 
 const Wrapper = styled.div`
-    background-color: #000;
-    background-image: url("${props => props.theme.bgPattern}");
-    display: flex;
-    position: relative;
+  background: url("${props => props.theme.bgPattern}") #000;
+  display: flex;
+  position: relative;
 `
 
 const Content = styled.div`
   margin: 0 auto;
   max-width: ${props => props.theme.maxWidths.general};
-  padding: 3rem 1.0875rem 10rem 1.0875rem;
+  padding: 3rem 1.0875rem 3rem 1.0875rem;
   color: ${props => props.theme.colors.secondary};
   text-align: center;
+  height: 600px;
+  @media (max-width: ${props => props.theme.breakpoints.s}) {
+    height: 500px;
+  }
 `
 
 const Avatar = styled.div`
-  background-color: bisque;
   height: 125px;
   width: 125px;
   margin: 0 auto;
@@ -55,14 +57,10 @@ const SocialMedia = styled.div`
 const Header = ({ avatar, name, location, socialMedia }) => (
   <Wrapper>
     <Content>
-      <Overdrive id="avatar-to-back">
-        <Avatar>
-          <img src={avatar} alt={name} />
-        </Avatar>
-      </Overdrive>
-      {/* <Overdrive id="name-to-back">
-        <Name>{name}</Name>
-      </Overdrive>
+      <Avatar>
+        <img src={avatar} alt={name} />
+      </Avatar>
+      <Name>{name}</Name>
       <Location>{location}</Location>
       <SocialMedia>
         {socialMedia.map(social => (
@@ -70,9 +68,16 @@ const Header = ({ avatar, name, location, socialMedia }) => (
             {social.name}
           </a>
         ))}
-      </SocialMedia> */}
+      </SocialMedia>
     </Content>
   </Wrapper>
 )
 
 export default Header
+
+Header.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  socialMedia: PropTypes.array.isRequired,
+}

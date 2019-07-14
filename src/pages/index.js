@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
-import Card from '../components/Card'
-import Header from '../components/Header'
+import { Card, Header, Layout } from '../components'
 import config from '../../config/site'
 
 const Grid = styled.div`
@@ -21,60 +22,71 @@ const Grid = styled.div`
 `
 
 const Content = styled.div`
-  margin: -6rem auto 6rem auto;
+  margin: -6rem auto 0 auto;
   max-width: ${props => props.theme.maxWidths.general};
-  padding: 0 ${props => props.theme.contentPadding} 1.45rem;
+  padding: 0 ${props => props.theme.contentPadding} 6rem;
   position: relative;
+`
+
+const BG = styled.div`
+  background-color: ${props => props.theme.colors.bg};
 `
 
 const Index = ({
   data: {
-    allMarkdownRemark: { edges },
+    allMdx: { nodes },
   },
 }) => (
-  <React.Fragment>
+  <Layout>
     <Header avatar={config.avatar} name={config.name} location={config.location} socialMedia={config.socialMedia} />
-    <Content>
-      <Grid>
-        {edges.map(project => (
-          <Card
-            date={project.node.frontmatter.date}
-            title={project.node.frontmatter.title}
-            cover={project.node.frontmatter.cover.childImageSharp.sizes}
-            path={project.node.fields.slug}
-            areas={project.node.frontmatter.areas}
-            slug={project.node.fields.slug}
-            key={project.node.fields.slug}
-          />
-        ))}
-      </Grid>
-    </Content>
-  </React.Fragment>
+    <BG>
+      <Content>
+        <Grid>
+          {nodes.map((project, index) => (
+            <Card
+              delay={index}
+              date={project.frontmatter.date}
+              title={project.frontmatter.title}
+              cover={project.frontmatter.cover.childImageSharp.fluid}
+              path={project.fields.slug}
+              areas={project.frontmatter.areas}
+              key={project.fields.slug}
+            />
+          ))}
+        </Grid>
+      </Content>
+    </BG>
+  </Layout>
 )
 
 export default Index
 
-/* eslint no-undef: off */
+Index.propTypes = {
+  data: PropTypes.shape({
+    allMdx: PropTypes.shape({
+      nodes: PropTypes.array.isRequired,
+    }),
+  }).isRequired,
+}
+
 export const pageQuery = graphql`
   query HomeQuery {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            cover {
-              childImageSharp {
-                sizes(maxWidth: 850, quality: 90, traceSVG: { color: "#328bff" }) {
-                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
-                }
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+      nodes {
+        fields {
+          slug
+        }
+        frontmatter {
+          cover {
+            childImageSharp {
+              fluid(maxWidth: 760, quality: 90) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
-            date(formatString: "DD.MM.YYYY")
-            title
-            areas
           }
+          date(formatString: "DD.MM.YYYY")
+          title
+          areas
         }
       }
     }

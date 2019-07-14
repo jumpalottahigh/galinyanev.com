@@ -3,38 +3,35 @@ module.exports = {
 
   siteTitle: 'Galin Yanev', // Navigation and Site Title
   siteTitleAlt: 'Galin Yanev Art', // Alternative Site title for SEO
-  siteUrl: 'https://galinyanev.netlify.com', // Domain of your site. No trailing slash!
+  siteTitleShort: 'Galin Yanev', // short_name for manifest
+  siteHeadline: 'Galin Yanev Abstract Art', // Headline for schema.org JSONLD
+  siteUrl: 'https://galinyanev.com', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
-  siteLogo: '/logos/logo-1024.png', // Used for SEO and manifest
+  siteLogo: '/logos/logo.png', // Used for SEO and manifest
   siteDescription: 'Galin Yanev Abstract Art',
+  author: 'Galin Yanev', // Author for schema.org JSONLD
 
-  // siteFBAppID: '123456789', // Facebook App ID
-  // userTwitter: '@emilia', // Twitter Username
-  ogSiteName: 'Galin Yanev Art', // Facebook Site Name
-  ogLanguage: 'en', // og:language
+  // userTwitter: '@jumpalottahigh', // Twitter Username
+  ogSiteName: 'galinyanev', // Facebook Site Name
+  ogLanguage: 'en_US', // og:language
   googleAnalyticsID: 'UA-43588334-7',
 
   // Manifest and Progress color
   themeColor: '#3498DB',
   backgroundColor: '#2b2e3c',
 
-  // Settings for typography.js
-  headerFontFamily: 'Open Sans',
-  bodyFontFamily: 'Space Mono',
-  baseFontSize: '16px',
-
   // Your information
-  avatar: '/logos/social.png',
-  name: 'jumpalottahigh',
-  location: 'Finland',
+  avatar: '/logos/galinyanev.png',
+  name: 'Galin Yanev',
+  location: 'Cyprus',
   socialMedia: [
     {
-      url: 'https://www.twitter.com/jumpalottahigh',
-      name: 'Twitter',
+      url: 'https://www.deviantart.com/artsygalin',
+      name: 'Deviant Art'
     },
     {
-      url: 'https://www.github.com/jumpalottahigh',
-      name: 'GitHub',
-    },
-  ],
+      url: 'https://www.galinyanev.com',
+      name: 'Homepage'
+    }
+  ]
 }
