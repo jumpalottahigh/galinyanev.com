@@ -30,7 +30,8 @@ const Avatar = styled.div`
   -ms-interpolation-mode: nearest-neighbor;
 
   img {
-    border-radius: 50%;
+    border-radius: 22% 60% 22% 60%;
+    height: 100%;
   }
 `
 
@@ -64,7 +65,12 @@ const Header = ({ avatar, name, location, socialMedia }) => (
       <Location>{location}</Location>
       <SocialMedia>
         {socialMedia.map(social => (
-          <a key={social.name} href={social.url} rel="noopener noreferrer" target="_blank">
+          <a
+            key={social.name}
+            href={social.url}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             {social.name}
           </a>
         ))}

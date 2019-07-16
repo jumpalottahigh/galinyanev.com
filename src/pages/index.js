@@ -8,16 +8,21 @@ import config from '../../config/site'
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(${props => props.theme.gridColumns}, 1fr);
-  grid-gap: 50px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
 
   .gatsby-image-outer-wrapper,
   .gatsby-image-wrapper {
     position: static !important;
+  }
+
+  @media (min-width: 769px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px;
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
   }
 `
 
@@ -38,7 +43,12 @@ const Index = ({
   },
 }) => (
   <Layout>
-    <Header avatar={config.avatar} name={config.name} location={config.location} socialMedia={config.socialMedia} />
+    <Header
+      avatar={config.avatar}
+      name={config.name}
+      location={config.location}
+      socialMedia={config.socialMedia}
+    />
     <BG>
       <Content>
         <Grid>

@@ -21,17 +21,13 @@ module.exports = {
   backgroundColor: '#2b2e3c',
 
   // Your information
-  avatar: '/logos/galinyanev.png',
+  avatar: '/logos/logo.png',
   name: 'Galin Yanev',
   location: 'Cyprus',
   socialMedia: [
     {
       url: 'https://www.deviantart.com/artsygalin',
-      name: 'Deviant Art'
+      name: 'Deviant Art',
     },
-    {
-      url: 'https://www.galinyanev.com',
-      name: 'Homepage'
-    }
-  ]
+  ],
 }
