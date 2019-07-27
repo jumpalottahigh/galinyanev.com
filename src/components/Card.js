@@ -65,7 +65,7 @@ const Name = styled.h2`
   margin-top: 0;
 `
 
-const Card = ({ path, cover, date, areas, title, delay }) => {
+const Card = ({ path, cover, date, title, delay }) => {
   const springProps = useSpring({
     config: config.slow,
     delay: 200 * delay,
@@ -83,14 +83,14 @@ const Card = ({ path, cover, date, areas, title, delay }) => {
           <Name>{title}</Name>
           <Bottom>
             <div>{date}</div>
-            <div>
+            {/* <div>
               {areas.map((area, index) => (
                 <React.Fragment key={area}>
                   {index > 0 && ', '}
                   {area}
                 </React.Fragment>
               ))}
-            </div>
+            </div> */}
           </Bottom>
         </Content>
       </CardItem>
@@ -104,7 +104,7 @@ Card.propTypes = {
   path: PropTypes.string.isRequired,
   cover: PropTypes.object.isRequired,
   date: PropTypes.string.isRequired,
-  areas: PropTypes.array.isRequired,
+  // areas: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   delay: PropTypes.number.isRequired,
 }

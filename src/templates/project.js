@@ -24,7 +24,10 @@ const InnerWrapper = styled.div`
   margin: 0 auto;
 `
 
-const Project = ({ pageContext: { slug, prev, next }, data: { project: postNode, images } }) => {
+const Project = ({
+  pageContext: { slug, prev, next },
+  data: { project: postNode, images },
+}) => {
   const project = postNode.frontmatter
 
   return (
@@ -35,7 +38,7 @@ const Project = ({ pageContext: { slug, prev, next }, data: { project: postNode,
         name={config.name}
         date={project.date}
         title={project.title}
-        areas={project.areas}
+        // areas={project.areas}
         text={postNode.body}
       />
       <BG>
@@ -115,7 +118,6 @@ export const pageQuery = graphql`
         }
         date(formatString: "DD.MM.YYYY")
         title
-        areas
       }
     }
   }
