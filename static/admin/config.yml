@@ -8,13 +8,14 @@ public_folder: /img
 collections:
   - name: 'post'
     label: 'Post'
-    folder: 'content/projects'
+    folder: 'content/projects/{{year}}-{{month}}-{{day}}-{{slug}}'
     create: true
-    slug: '/{{year}}-{{month}}-{{day}}-{{slug}}/index.md'
+    slug: 'index.mdx'
     editor:
       preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Cover', name: 'cover', required: true, widget: 'image' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - {
           label: 'Images',
