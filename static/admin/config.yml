@@ -38,9 +38,9 @@ collections:
               },
             ],
         }
-        - {
+      - {
           label: 'Publish Date',
           name: 'date',
           widget: 'datetime',
           format: 'YYYY-MM-DD',
-        }
+      }
