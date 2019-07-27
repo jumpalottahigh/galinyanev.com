@@ -17,8 +17,25 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - {
-          label: 'Featured Image',
-          name: 'featuredImage',
-          widget: 'image',
-          media_library: { config: { multiple: true } },
+          label: 'Images',
+          name: 'images',
+          required: true,
+          widget: 'list',
+          fields:
+            [
+              { label: 'Name', name: 'name', required: true, widget: 'string' },
+              {
+                label: 'Image Title',
+                name: 'imageTitle',
+                required: false,
+                widget: 'string',
+              },
+              {
+                label: 'Image',
+                name: 'image',
+                required: false,
+                hint: "If an image isn't specified, a default headshot placeholder image will be used",
+                widget: 'image',
+              },
+            ],
         }
