@@ -5,7 +5,7 @@
   "author": "Georgi Yanev <georgiyanev.gy@gmail.com>",
   "scripts": {
     "develop": "gatsby develop",
-    "dev": "gatsby develop -o",
+    "dev": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
