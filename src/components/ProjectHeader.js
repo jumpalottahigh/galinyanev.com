@@ -42,7 +42,7 @@ const Avatar = styled.div`
   -ms-interpolation-mode: nearest-neighbor;
 
   img {
-    border-radius: 50%;
+    border-radius: 22% 60% 22% 60%;
     height: auto;
     width: 100%;
   }
@@ -76,13 +76,23 @@ const ProjectHeader = ({ avatar, name, title, date, areas, text }) => {
     from: { opacity: 0, transform: 'translate3d(0, 30px, 0)' },
     to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
   })
-  const contentProps = useSpring({ config: config.slow, delay: 600, from: { opacity: 0 }, to: { opacity: 1 } })
+  const contentProps = useSpring({
+    config: config.slow,
+    delay: 600,
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  })
 
   return (
     <Wrapper>
       <Content>
         <Back to="/">
-          <img src={arrow} data-info="back" alt="Back to home" aria-label="Back to home" />
+          <img
+            src={arrow}
+            data-info="back"
+            alt="Back to home"
+            aria-label="Back to home"
+          />
           <Avatar>
             <img src={avatar} alt={name} />
           </Avatar>
