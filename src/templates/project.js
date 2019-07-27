@@ -81,6 +81,23 @@ Project.defaultProps = {
   }),
 }
 
+// images: allFile(
+//   filter: {
+//     absolutePath: { regex: $absolutePathRegex }
+//     extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
+//   }
+//   sort: { fields: name, order: ASC }
+// ) {
+//   nodes {
+//     name
+//     childImageSharp {
+//       fluid(maxWidth: 1600, quality: 90) {
+//         ...GatsbyImageSharpFluid_withWebp
+//       }
+//     }
+//   }
+// }
+
 export const pageQuery = graphql`
   query($slug: String!, $absolutePathRegex: String!) {
     images: allFile(
@@ -99,6 +116,7 @@ export const pageQuery = graphql`
         }
       }
     }
+
     project: mdx(fields: { slug: { eq: $slug } }) {
       body
       excerpt
@@ -116,9 +134,21 @@ export const pageQuery = graphql`
             }
           }
         }
+
         date(formatString: "DD.MM.YYYY")
         title
       }
     }
   }
 `
+
+// images {
+//   image {
+//     name
+//     childImageSharp {
+//       fluid(maxWidth: 1600, quality: 90) {
+//         ...GatsbyImageSharpFluid_withWebp
+//       }
+//     }
+//   }
+// }
