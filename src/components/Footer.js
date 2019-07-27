@@ -30,6 +30,9 @@ const Footer = () => (
       </a>{' '}
       theme by LekoArts.
     </h5>
+    <h6>
+      <a href="/admin">Admin</a>
+    </h6>
   </Content>
 )
 
