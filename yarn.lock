@@ -5702,11 +5702,9 @@ focus-group@^0.3.1:
   integrity sha1-4PMu2GsNq91v/OvfiY7LMuR/7c4=
 
 follow-redirects@^1.0.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
-  integrity sha512-m/pZQy4Gj287eNy94nivy5wchN3Kp+Q5WgUPNy5lJSZ3sgkVKSYV/ZChMAQVIgx1SqfZ2zBZtPA2YlXIWxxJOQ==
-  dependencies:
-    debug "^3.2.6"
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+  integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
 for-each@^0.3.2, for-each@^0.3.3:
   version "0.3.3"
@@ -12359,7 +12357,7 @@ remark-mdx@^1.0.21:
 
 remark-parse@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npmjs.org/remark-parse/-/remark-parse-1.1.0.tgz#c3ca10f9a8da04615c28f09aa4e304510526ec21"
+  resolved "https://registry.npmjs.org/remark-parse/-/remark-parse-1.1.0.tgz#c3ca10f9a8da04615c28f09aa4e304510526ec21"
   dependencies:
     collapse-white-space "^1.0.0"
     extend "^3.0.0"
@@ -12436,7 +12434,7 @@ remark-squeeze-paragraphs@^3.0.1:
 
 remark-stringify@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npmjs.org/remark-stringify/-/remark-stringify-1.1.0.tgz#a7105e25b9ee2bf9a49b75d2c423f11b06ae2092"
+  resolved "https://registry.npmjs.org/remark-stringify/-/remark-stringify-1.1.0.tgz#a7105e25b9ee2bf9a49b75d2c423f11b06ae2092"
   dependencies:
     ccount "^1.0.0"
     extend "^3.0.0"
@@ -12498,7 +12496,7 @@ remark@^10.0.0:
 
 remark@^5.0.1:
   version "5.1.0"
-  resolved "http://registry.npmjs.org/remark/-/remark-5.1.0.tgz#cb463bd3dbcb4b99794935eee1cf71d7a8e3068c"
+  resolved "https://registry.npmjs.org/remark/-/remark-5.1.0.tgz#cb463bd3dbcb4b99794935eee1cf71d7a8e3068c"
   dependencies:
     remark-parse "^1.1.0"
     remark-stringify "^1.1.0"
@@ -14478,7 +14476,7 @@ unicode-property-aliases-ecmascript@^1.0.4:
 
 unified@^4.1.1:
   version "4.2.1"
-  resolved "http://registry.npmjs.org/unified/-/unified-4.2.1.tgz#76ff43aa8da430f6e7e4a55c84ebac2ad2cfcd2e"
+  resolved "https://registry.npmjs.org/unified/-/unified-4.2.1.tgz#76ff43aa8da430f6e7e4a55c84ebac2ad2cfcd2e"
   dependencies:
     bail "^1.0.0"
     extend "^3.0.0"
@@ -14918,7 +14916,7 @@ vfile-message@^1.0.0:
 
 vfile@^1.0.0:
   version "1.4.0"
-  resolved "http://registry.npmjs.org/vfile/-/vfile-1.4.0.tgz#c0fd6fa484f8debdb771f68c31ed75d88da97fe7"
+  resolved "https://registry.npmjs.org/vfile/-/vfile-1.4.0.tgz#c0fd6fa484f8debdb771f68c31ed75d88da97fe7"
 
 vfile@^2.0.0:
   version "2.3.0"
